@@ -8,34 +8,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service // Marks this class as a Spring service component
 public class ProductService {
 
     private ProductRepository productRepository;
 
-    @Autowired
+    @Autowired // Injects the ProductRepository dependency
     public ProductService(ProductRepository repository) {
         this.productRepository = repository;
     }
 
     public List<Product> getProducts() {
+        // Retrieves all products from the database
         return productRepository.findAll();
     }
 
-
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
-    }
-
-    public Product createProduct(Product product) {
-        //  perform validations and business logic
-
-        return productRepository.save(product);
-    }
-
-
-
     public Product getProductById(Long id) {
+        // Retrieves a product by its ID, or returns a dummy product if not found
         Product dummyProduct = new Product();
         dummyProduct.setId(0L);
         dummyProduct.setTitle("Unknown Product");
@@ -43,13 +32,23 @@ public class ProductService {
         return productRepository.findById(id).orElse(dummyProduct);
     }
 
-    public Product updateProduct(Long id, Product productDetails) {
-
-        Product product = productRepository.findById(id).orElseThrow();
-
-        product.setTitle(productDetails.getTitle());
-        product.setPrice(productDetails.getPrice());
-
+    public Product createProduct(Product product) {
+        // Creates and saves a new product entity
+        // perform validations and business logic
         return productRepository.save(product);
     }
+
+    public Product updateProduct(Long id, Product productDetails) {
+        // Updates an existing product's title and price by its ID
+        Product product = productRepository.findById(id).orElseThrow();
+        product.setTitle(productDetails.getTitle());
+        product.setPrice(productDetails.getPrice());
+        return productRepository.save(product);
+    }
+
+    public void deleteProduct(Long id) {
+        // Deletes a product by its ID
+        productRepository.deleteById(id);
+    }
+
 }

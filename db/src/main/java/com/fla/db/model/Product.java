@@ -5,19 +5,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-// POJO - Plain Old Java Objects
+// POJO - Plain Old Java Object representing a Product entity
 
-@Entity
+@Entity // Marks this class as a JPA entity mapped to a database table
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Specifies the primary key of the entity
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the ID value using the database identity column
     private Long id;
 
-    private String title;
-    private double price;
+    private String title; // Product title
+    private double price; // Product price
 
     public Product() {
+        // Default constructor required by JPA
     }
 
     public Product(Long id, String title, double price) {
@@ -27,26 +28,26 @@ public class Product {
     }
 
     public Long getId() {
-        return id;
+        return id; // Returns the product ID
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = id; // Sets the product ID
     }
 
     public String getTitle() {
-        return title;
+        return title; // Returns the product title
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title; // Sets the product title
     }
 
     public double getPrice() {
-        return price;
+        return price; // Returns the product price
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = price; // Sets the product price
     }
 }

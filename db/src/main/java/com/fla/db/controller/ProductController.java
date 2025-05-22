@@ -7,53 +7,41 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/products")
+@RestController // Marks this class as a REST controller, handling HTTP requests/responses
+@RequestMapping("/products") // Base URL for all endpoints in this controller
 public class ProductController {
 
     private final ProductService productService;
 
-    @Autowired
+    @Autowired // Injects the ProductService dependency
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping // Handles GET requests to /products
     public List<Product> getProducts() {
-        return productService.getProducts();
+        return productService.getProducts(); // Returns a list of all products
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") // Handles GET requests to /products/{id}
     public Product getProductById(@PathVariable Long id) {
-        Product product = productService.getProductById(id);
+        Product product = productService.getProductById(id); // Retrieves a product by its ID
         return product;
     }
 
-    @PostMapping
+    @PostMapping // Handles POST requests to /products
     public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+        return productService.createProduct(product); // Creates a new product from the request body
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") // Handles PUT requests to /products/{id}
     public Product updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        return productService.updateProduct(id, productDetails);
+        return productService.updateProduct(id, productDetails); // Updates an existing product by ID
     }
 
-
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}") // Handles DELETE requests to /products/{id}
     public void deleteProduct(@PathVariable Long id) {
-
-        productService.deleteProduct(id);
+        productService.deleteProduct(id); // Deletes a product by its ID
     }
-
-
-
-
-
-
-
-
-
 
 }
