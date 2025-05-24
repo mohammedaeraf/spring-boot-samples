@@ -29,6 +29,19 @@ public class ProductController {
         return product;
     }
 
+    @GetMapping("/search")
+    public List<Product> getProductsByTitle(@RequestParam String searchTerm) {
+        return productService.getProductsByTitle(searchTerm); // Returns a list of all products
+    }
+
+    @GetMapping("/price-range")
+    public List<Product> getProductsByPrice(@RequestParam int startPrice, @RequestParam int endPrice) {
+        return productService.getProductsByPrice(startPrice, endPrice); // Returns a list of all products
+    }
+
+
+
+
     @PostMapping // Handles POST requests to /products
     public Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product); // Creates a new product from the request body

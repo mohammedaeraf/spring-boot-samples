@@ -10,4 +10,6 @@ public class DbApplication {
 		SpringApplication.run(DbApplication.class, args);
 	}
 
+
+
 }

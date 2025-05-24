@@ -32,6 +32,12 @@ public class ProductService {
         return productRepository.findById(id).orElse(dummyProduct);
     }
 
+    public List<Product> getProductsByTitle(String searchTerm) {
+        return productRepository.findByTitleContainingIgnoreCase(searchTerm);
+    }
+
+
+
     public Product createProduct(Product product) {
         // Creates and saves a new product entity
         // perform validations and business logic
@@ -51,4 +57,8 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+
+    public List<Product> getProductsByPrice(int startPrice, int endPrice) {
+        return productRepository.findByPriceBetween(startPrice, endPrice);
+    }
 }
