@@ -1,0 +1,18 @@
+2025-05-25 09:46:35.591479+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found (this database is empty); SQL statement:
+insert into product (brand,category,price,title,id) values (?,?,?,?,default) [42104-232]
+2025-05-25 09:48:00.439030+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUCT" not found (this database is empty); SQL statement:
+insert into product (brand,category,price,title,id) values (?,?,?,?,default) [42104-232]
+2025-05-25 09:52:52.819461+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]Desc PRODUCT"; expected "DELETE, DROP"; SQL statement:
+Desc PRODUCT [42001-232]
+2025-05-25 09:52:57.601977+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]Describe PRODUCT"; expected "DELETE, DROP"; SQL statement:
+Describe PRODUCT [42001-232]
+2025-05-25 09:53:10.549298+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]Describe estoredb.PRODUCT"; expected "DELETE, DROP"; SQL statement:
+Describe estoredb.PRODUCT [42001-232]
+2025-05-25 09:53:39.484796+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]Describe PRODUCT"; expected "DELETE, DROP"; SQL statement:
+Describe PRODUCT [42001-232]
