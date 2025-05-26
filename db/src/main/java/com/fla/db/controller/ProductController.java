@@ -29,6 +29,13 @@ public class ProductController {
         return product;
     }
 
+    @GetMapping("/search-by-category") // Handles GET requests to /products
+    public List<Product> getProductsByCategory(@RequestParam String searchTerm) {
+        return productService.getProductsByCategoryOrderByTitle(searchTerm); // Returns a list of all products
+    }
+
+
+
     @GetMapping("/search")
     public List<Product> getProductsByTitle(@RequestParam String searchTerm) {
         return productService.getProductsByTitle(searchTerm); // Returns a list of all products

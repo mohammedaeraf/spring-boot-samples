@@ -16,15 +16,19 @@ public class Product {
 
     private String title; // Product title
     private double price; // Product price
+    private String brand;
+    private String category;
 
     public Product() {
         // Default constructor required by JPA
     }
 
-    public Product(Long id, String title, double price) {
+    public Product(Long id, String title, double price, String brand, String category) {
         this.id = id;
         this.title = title;
         this.price = price;
+        this.brand = brand;
+        this.category = category;
     }
 
     public Long getId() {
@@ -49,5 +53,21 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price; // Sets the product price
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

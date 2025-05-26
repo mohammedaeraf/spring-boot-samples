@@ -29,6 +29,8 @@ public class ProductService {
         dummyProduct.setId(0L);
         dummyProduct.setTitle("Unknown Product");
         dummyProduct.setPrice(0);
+        dummyProduct.setBrand("UNKNOWN");
+        dummyProduct.setCategory("UNKNOWN");
         return productRepository.findById(id).orElse(dummyProduct);
     }
 
@@ -60,5 +62,13 @@ public class ProductService {
 
     public List<Product> getProductsByPrice(int startPrice, int endPrice) {
         return productRepository.findByPriceBetween(startPrice, endPrice);
+    }
+
+    public List<Product> getProductsByCategoryOrderByTitle(String category) {
+        return productRepository.findByCategoryContainingIgnoreCaseOrderByTitle(category);
+    }
+
+    public List<Product> getProductsByBrandAndPriceRange(String brand, int minPrice, int maxPrice) {
+        return productRepository.getProductsByBrandPrice(brand, minPrice, maxPrice);
     }
 }
