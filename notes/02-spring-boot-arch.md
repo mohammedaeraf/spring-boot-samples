@@ -1,6 +1,10 @@
 ## Spring Boot Architecture
 
-The architecture of a Spring Boot application typically follows a layered pattern, making it easy to maintain, test, and scale. The primary layers include:
+The architecture of a Spring Boot application typically follows a layered pattern, making it easy to maintain, test, and scale. 
+
+![Spring Boot Architecture](spring-boot-architecture.png)
+
+The primary layers include:
 
 ### 1. **Model Layer (Domain Layer)**
 
