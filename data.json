@@ -1,0 +1,7 @@
+{
+  "name": "IT",
+  "employees": [
+    { "name": "Alice" },
+    { "name": "Bob" }
+  ]
+}
