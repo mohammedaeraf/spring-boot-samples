@@ -29,55 +29,47 @@ public class ProductController {
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id); // Retrieves a product by its ID
         if (product == null) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             return ResponseEntity.notFound().build();
-        }
-        else {
-//            return ResponseEntity.status(HttpStatus.OK).body(product);
+        } else {
             return ResponseEntity.ok(product);
         }
     }
 
-
-
     @PostMapping // Handles POST requests to /products
-    public Product createProduct(@RequestBody Product product) {
-        // TODO - Return HttpStatus.CREATED when successful else HttpStatus.BAD_REQUEST
-        // If the product is successfully created, it will return a 201 Created status
-        // If there is an error in creating the product, it will return a 400 Bad Request status
-        // Note: The service method should handle the logic for creation and return appropriate response.
-        // Return type of this function should be ResponseEntity<Product> to indicate success or failure
-        return productService.createProduct(product); // Creates a new product from the request body
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        Product createdProduct = productService.createProduct(product);
+        if (createdProduct != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
     @PutMapping("/{id}") // Handles PUT requests to /products/{id}
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        // TODO - Return HttpStatus.OK when successful else HttpStatus.NOT_FOUND
-        // If the product with the given ID exists, it will return a 200 OK status with the updated product 
-        // If the product does not exist, it will return a 404 Not Found status
-        // Note: The service method should handle the logic for updating and return appropriate response.
-        // Return type of this function should be ResponseEntity<Product> to indicate success or failure
-        return productService.updateProduct(id, productDetails); // Updates an existing product by ID
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
+         Product updatedProduct = productService.updateProduct(id, productDetails);
+        if (updatedProduct != null) {
+            return ResponseEntity.ok(updatedProduct);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
-    @DeleteMapping("/{id}") // Handles DELETE requests to /products/{id}
-    public void deleteProduct(@PathVariable Long id) {
-        // TODO - Return HttpStatus.NO_CONTENT when successful else HttpStatus.NOT_FOUND
-        // If the product with the given ID does not exist, it will return a 404 Not Found status
-        // If the product is successfully deleted, it will return a 204 No Content status
-        // Note: The service method should handle the logic for checking existence and deletion
-        // and return appropriate response.
-        // Return type of this function should be ResponseEntity<Void> to indicate success or failure
-        productService.deleteProduct(id); // Deletes a product by its ID
+     @DeleteMapping("/{id}") // Handles DELETE requests to /products/{id}
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        boolean deleted = productService.deleteProduct(id);
+        if (deleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-
 
     /* Search and Filter Functions */
     @GetMapping("/search-by-category") // Handles GET requests to /products
     public List<Product> getProductsByCategory(@RequestParam String searchTerm) {
         return productService.getProductsByCategoryOrderByTitle(searchTerm); // Returns a list of all products
     }
-
 
     @GetMapping("/search")
     public List<Product> getProductsByTitle(@RequestParam String searchTerm) {
