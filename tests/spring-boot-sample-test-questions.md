@@ -134,7 +134,7 @@ D. A scripting language for JPA
 
 ---
 
-Here are **5 sample Multiple Choice Questions (MCQs)** based on **REST API** for your Java Full Stack course participants:
+### **MCQs** based on **REST API** 
 
 ---
 
@@ -198,10 +198,6 @@ D. HEAD
 
 ---
 
-Here are **5 more MCQs** based on **REST API** concepts, ideal for reinforcing your Java Full Stack participants' understanding:
-
----
-
 ### **MCQ 6**
 
 **Q.6: Which HTTP status code represents a successful creation of a resource?**
@@ -259,10 +255,6 @@ C. Update part of an existing resource
 D. Delete an existing resource
 
 ✅ **Answer:** C. Update part of an existing resource
-
----
-
-Sure! Here are **10 Multiple Choice Questions (MCQs)** based on **Databases** and **MySQL**, suitable for beginners:
 
 ---
 
@@ -347,5 +339,3 @@ C) ORDER BY
 D) RANK BY
 
 **Answer:** C) ORDER BY
-
----
