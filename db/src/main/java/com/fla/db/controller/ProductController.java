@@ -3,6 +3,8 @@ package com.fla.db.controller;
 import com.fla.db.model.Product;
 import com.fla.db.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +26,16 @@ public class ProductController {
     }
 
     @GetMapping("/{id}") // Handles GET requests to /products/{id}
-    public Product getProductById(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id); // Retrieves a product by its ID
-        return product;
+        if (product == null) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.notFound().build();
+        }
+        else {
+//            return ResponseEntity.status(HttpStatus.OK).body(product);
+            return ResponseEntity.ok(product);
+        }
     }
 
     @GetMapping("/search-by-category") // Handles GET requests to /products

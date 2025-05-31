@@ -1,5 +1,6 @@
 package in.flacademy.hrms.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class Department {
     private Long id;
     private String name;
 
-    // @JsonManagedReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Employee> employees;
 

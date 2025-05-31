@@ -25,13 +25,24 @@ public class ProductService {
 
     public Product getProductById(Long id) {
         // Retrieves a product by its ID, or returns a dummy product if not found
-        Product dummyProduct = new Product();
-        dummyProduct.setId(0L);
-        dummyProduct.setTitle("Unknown Product");
-        dummyProduct.setPrice(0);
-        dummyProduct.setBrand("UNKNOWN");
-        dummyProduct.setCategory("UNKNOWN");
-        return productRepository.findById(id).orElse(dummyProduct);
+//        Product dummyProduct = new Product();
+//        dummyProduct.setId(0L);
+//        dummyProduct.setTitle("Unknown Product");
+//        dummyProduct.setPrice(0);
+//        dummyProduct.setBrand("UNKNOWN");
+//        dummyProduct.setCategory("UNKNOWN");
+//        Optional<Product> optionalProduct = productRepository.findById(id);
+//        Product product;
+//        if (optionalProduct.isPresent()) {
+//            product = optionalProduct.get();
+//        }
+//        else {
+//            product = null;
+//        }
+
+//        product = optionalProduct.isPresent() ? optionalProduct.get() : null;
+//        return product;
+        return productRepository.findById(id).orElse(null);
     }
 
     public List<Product> getProductsByTitle(String searchTerm) {

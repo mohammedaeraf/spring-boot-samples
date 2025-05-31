@@ -1,5 +1,6 @@
 package in.flacademy.hrms.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +13,7 @@ public class Employee {
     private String name;
     private String role;
 
-    // @JsonBackReference
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     private Department department;
