@@ -1,4 +1,4 @@
-## **ResponseEntity in Spring Boot** 
+## **ResponseEntity in Spring Boot**
 
 `ResponseEntity` is a powerful feature in Spring that allows developers to control the entire HTTP response, including status codes, headers, and the response body. It is a part of the Spring MVC module and is often used in RESTful web services.
 
@@ -30,47 +30,25 @@
 You can create a `ResponseEntity` using one of the following methods:
 
 - **Using static builder methods (`ok()`, `status()`, `notFound()`, etc.):**
-    
-    ```java
-    @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Product product = productService.getProductById(id);
-        if (product != null) {
-            return ResponseEntity.ok(product);  // Return 200 OK with body
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Return 404 Not Found
-        }
-    }
-    
-    ```
-    
+  ```java
+  @GetMapping("/product/{id}")
+  public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+      Product product = productService.getProductById(id);
+      if (product != null) {
+          return ResponseEntity.ok(product);  // Return 200 OK with body
+      } else {
+          return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Return 404 Not Found
+      }
+  }
+
+  ```
 - **Using the constructor:**
-    
-    ```java
-    return new ResponseEntity<>(product, HttpStatus.OK);  // Return 200 OK with body
-    
-    ```
-    
+  ```java
+  return new ResponseEntity<>(product, HttpStatus.OK);  // Return 200 OK with body
 
-### 5. **Setting HTTP Headers in `ResponseEntity`:**
+  ```
 
-You can include HTTP headers in the response by using `HttpHeaders`.
-
-```java
-@GetMapping("/download")
-public ResponseEntity<byte[]> downloadFile() {
-    byte[] fileContent = fileService.getFileContent();
-
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-    headers.setContentDispositionFormData("attachment", "file.zip");
-
-    return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
-}
-
-```
-
-### 6. **Handling Responses with No Body:**
+### 5. **Handling Responses with No Body:**
 
 In some cases, you might want to return only the status without any body content. Use `ResponseEntity<Void>` for such cases:
 
@@ -87,45 +65,41 @@ public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
 
 ```
 
-### 7. **Examples of Common Usage Patterns:**
+### 6. **Examples of Common Usage Patterns:**
 
 - **Returning a Created Resource (201 Created):**
-    
-    ```java
-    @PostMapping("/product")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product createdProduct = productService.saveProduct(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
-    }
-    
-    ```
-    
+  ```java
+  @PostMapping("/product")
+  public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+      Product createdProduct = productService.saveProduct(product);
+      return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+  }
+
+  ```
 - **Handling Validation Errors (400 Bad Request):**
-    
-    ```java
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@Valid @RequestBody User user, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input data");
-        }
-        userService.registerUser(user);
-        return ResponseEntity.ok("User registered successfully");
-    }
-    
-    ```
-    
+  ```java
+  @PostMapping("/register")
+  public ResponseEntity<String> registerUser(@Valid @RequestBody User user, BindingResult result) {
+      if (result.hasErrors()) {
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input data");
+      }
+      userService.registerUser(user);
+      return ResponseEntity.ok("User registered successfully");
+  }
+
+  ```
 - **Using Custom Headers:**
-    
-    ```java
-    @GetMapping("/info")
-    public ResponseEntity<String> getInfo() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Custom-Header", "CustomHeaderValue");
-        return new ResponseEntity<>("Response with custom header", headers, HttpStatus.OK);
-    }
-    
-    ```
-    
+  ```java
+  @GetMapping("/info")
+  public ResponseEntity<String> getInfo() {
+      HttpHeaders headers = new HttpHeaders();
+      headers.add("Custom-Header", "CustomHeaderValue");
+      return new ResponseEntity<>("Response with custom header", headers, HttpStatus.OK);
+  }
+
+  ```
+
+---
 
 ### Is it mandatory to Use `ResponseEntity`?
 
@@ -156,28 +130,24 @@ public ResponseEntity<Product> getProduct(@PathVariable Long id) {
 
 ### Alternatives to `ResponseEntity`
 
-1. **Returning the Object Directly:**
-If you don't need to customize the response and just want to return a response body with a default `200 OK` status, you can return the object directly:
-    
-    ```java
-    @GetMapping("/product/{id}")
-    public Product getProduct(@PathVariable Long id) {
-        return productService.findById(id); // Default 200 OK status
-    }
-    
-    ```
-    
-2. **Using `@ResponseBody` or `@RestController`:**
-The `@ResponseBody` annotation (or using `@RestController` at the class level) is sufficient for simple cases where you want to return the response body directly.
-    
-    ```java
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "Hello, World!"; // Directly returns the string as the response body
-    }
-    
-    ```
-    
+1.  **Returning the Object Directly:**
+    If you don't need to customize the response and just want to return a response body with a default `200 OK` status, you can return the object directly:
+        ```java
+        @GetMapping("/product/{id}")
+        public Product getProduct(@PathVariable Long id) {
+            return productService.findById(id); // Default 200 OK status
+        }
+
+        ```
+2.  **Using `@ResponseBody` or `@RestController`:**
+    The `@ResponseBody` annotation (or using `@RestController` at the class level) is sufficient for simple cases where you want to return the response body directly.
+        ```java
+        @GetMapping("/hello")
+        public String sayHello() {
+            return "Hello, World!"; // Directly returns the string as the response body
+        }
+
+        ```
 
 ### When to Avoid `ResponseEntity`
 
