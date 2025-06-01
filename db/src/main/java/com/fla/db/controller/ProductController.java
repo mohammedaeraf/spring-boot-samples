@@ -26,8 +26,6 @@ public class ProductController {
         return productService.getProducts(); // Returns a list of all products
     }
 
-
-
     @GetMapping("/{id}") // Handles GET requests to /products/{id}
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id); // Retrieves a product by its ID
@@ -39,7 +37,6 @@ public class ProductController {
             return ResponseEntity.ok(product);
         }
     }
-
 
     @PostMapping // Handles POST requests to /products
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
