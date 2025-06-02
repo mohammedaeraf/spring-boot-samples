@@ -1,6 +1,7 @@
 package com.fla.db.controller;
 
 import com.fla.db.model.Product;
+import com.fla.db.model.ResponseMessage;
 import com.fla.db.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}") // Handles GET requests to /products/{id}
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ResponseEntity<?> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id); // Retrieves a product by its ID
         if (product == null) {
-            return ResponseEntity.notFound().build();
+            ResponseMessage responseMessage = new ResponseMessage();
+            responseMessage.setMessage("Product not found with id " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseMessage);
         } else {
             return ResponseEntity.ok(product);
         }
