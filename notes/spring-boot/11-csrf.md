@@ -19,7 +19,7 @@
 
 **Result**: Money is transferred from your account without your knowledge, just because you visited the malicious website while logged into your bank account.
 
-![CSRF.webp](https://prod-files-secure.s3.us-west-2.amazonaws.com/78fa7852-92d6-4ec8-b91c-71789c1b5ead/d317216d-48bc-4acd-b9b2-0eae9f4f024f/CSRF.webp)
+![CSRF.webp](CSRF.webp)
 
 **Source**: NeuraLegion
 
